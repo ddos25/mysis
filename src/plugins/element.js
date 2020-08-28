@@ -1,5 +1,7 @@
 import Vue from 'vue'
-import { Form, FormItem, Button, Input,Message,Header,Container,Aside,Main,Menu,Submenu} from 'element-ui';
+import { Form, FormItem, Button, Input,Message,Header,Container,Aside,Main,Menu,Submenu,
+  MenuItem,MenuItemGroup,Breadcrumb,BreadcrumbItem,Row, Col,Card,Table,
+  TableColumn, Switch,Pagination,Dialog} from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(Form)
@@ -11,4 +13,17 @@ Vue.use(Aside)
 Vue.use(Main)
 Vue.use(Menu)
 Vue.use(Submenu)
+Vue.use(Header)
+Vue.use(MenuItem)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(BreadcrumbItem)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Card)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Switch)
+Vue.use(Pagination)
+Vue.use(Dialog)
 Vue.prototype.$message=Message
