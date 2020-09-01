@@ -50,9 +50,16 @@
           <el-table-column
             label="操作">
             <template slot-scope="scope">
-            <el-button type="primary"  icon="el-icon-edit" size="mini" @click="editHandle(scope.row)"></el-button>
-            <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteHandle(scope.row)"></el-button>
-            <el-button type="warning" icon="el-icon-star-off" size="mini"></el-button>
+              <el-tooltip class="item" effect="dark" content="编辑" placement="top">
+                <el-button type="primary"  icon="el-icon-edit" size="mini" @click="editHandle(scope.row)"></el-button>
+              </el-tooltip>
+              <el-tooltip class="item" effect="dark" content="删除" placement="top">
+                <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteHandle(scope.row)"></el-button>
+
+              </el-tooltip>
+              <el-tooltip class="item" effect="dark" content="分配角色" placement="top">
+                <el-button type="warning" icon="el-icon-star-off" size="mini" @click="allotHandle(scope.row)"></el-button>
+              </el-tooltip>
             </template>
           </el-table-column>
         </el-table>
@@ -120,6 +127,23 @@
   </span>
       </el-dialog>
 
+      <el-dialog title="分配角色" :visible.sync="allotDialogVisible"
+                 width="30%" >
+        <el-form ref="allotUserRef" label-width="80px" :model="allotUser" >
+          <div>
+            <p>当前的用户:{{allotUser.username}}</p>
+            <p>当前的角色:{{allotUser.role_name}}</p>
+          </div>
+          <el-select v-model="selectedId" placeholder="请选择">
+            <el-option v-for="item in roleList" :key="item.id" :label="item.roleName" :value="item.id">
+            </el-option>
+          </el-select>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+    <el-button @click="closeAllotForm">取 消</el-button>
+    <el-button type="primary" @click="allotUserHandle">确 定</el-button>
+  </span>
+      </el-dialog>
 
   
     </div>
@@ -161,9 +185,14 @@
             },
             delUser:{},
 
+            allotUser:{},
+            selectedId:'',
+            roleList:[],
+
             dialogVisible:false,
             editDialogVisible:false,
             deleteDialogVisible:false,
+            allotDialogVisible:false,
 
             addUserRules:{
               username: [
@@ -284,11 +313,6 @@
           this.deleteDialogVisible=true
         },
 
-
-
-
-
-
         //确定添加用户
         addUserHandle(){
           // console.log(this.newUser);
@@ -330,37 +354,67 @@
       //确定修改用户
        editUserHandle(){
          this.$refs.editUserRef.validate(async vali=>{
-           if (!vali)return
+           if (!vali) return
 
-         const{data:res}=await this.$http.put(`users/${this.editUser.id}`)
-         console.log(res);
-         if (res.meta.status!==200)return this.$message.error('修改失败')
-         this.$message.success('更新成功')
+           const {data: res} = await this.$http.put(`users/${this.editUser.id}`)
+           console.log(res);
+           if (res.meta.status !== 200) return this.$message.error('修改失败')
+           this.$message.success('更新成功')
 
-         this.clearEditForm()
+           this.clearEditForm()
            this.getUserList()
 
          })
        },
 
         //  清空编辑表单
-        clearEditForm(){
-          this.$refs.editUserRef.resetFields()
-          this.editDialogVisible=false
+        clearEditForm() {
+          this.$refs.editRolesRef.resetFields()
+          this.editDialogVisible = false
 
         },
 
-      //确定删除用户
-        async delUserHandle(){
-          const {data:res}=await this.$http.delete(`users/${this.delUser.id}`)
+        //确定删除用户
+        async delUserHandle() {
+          const {data: res} = await this.$http.delete(`users/${this.delUser.id}`)
           // console.log(res);
-          if (res.meta.status!==200)return this.$message.error('删除失败' )
+          if (res.meta.status !== 200) return this.$message.error('删除失败')
           this.$message.success('删除成功！')
-          this.deleteDialogVisible=false
+          this.deleteDialogVisible = false
 
           this.getUserList()
 
         },
+
+
+
+      //  分配角色
+       async allotHandle(user) {
+          this.allotDialogVisible = true
+          this.allotUser=user
+          // console.log(user);
+          const{data:res}=await this.$http.get('roles')
+         if (res.meta.status!==200)return this.$message.error('获取角色失败')
+
+         this.roleList=res.data
+         // console.log(res);
+       },
+
+      // 确定角色分配
+        async allotUserHandle(){
+         const {data:res}=await this.$http.put(`users/${this.allotUser.id}/role`,{rid:this.selectedId})
+          console.log(res);
+         if (res.meta.status!==200)return this.$message.err('分配失败')
+          this.$message.success('分配成功')
+          this.getUserList()
+          this.closeAllotForm()
+        },
+
+        closeAllotForm(){
+         this.selectedId=''
+         this.allotDialogVisible=false
+
+        }
 
 
 
