@@ -1,8 +1,13 @@
 import Vue from 'vue'
+
+import ZkTable from 'vue-table-with-tree-grid'
+
+Vue.use(ZkTable)
+
 import { Form, FormItem, Button, Input,Message,Header,Container,Aside,Main,Menu,Submenu,
   MenuItem,MenuItemGroup,Breadcrumb,BreadcrumbItem,Row, Col,Card,Table,
   TableColumn, Switch,Pagination,Dialog,Tag, MessageBox,Tree,Tooltip, Select, Option,
-   } from 'element-ui';
+  Cascader} from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(Form)
@@ -32,6 +37,7 @@ Vue.use(Tree)
 Vue.use(Tooltip)
 Vue.use( Select)
 Vue.use(Option)
+Vue.use(Cascader)
 // Vue.use(MessageBox)
 Vue.prototype.$message=Message
 Vue.prototype.$confirm = MessageBox.confirm;
