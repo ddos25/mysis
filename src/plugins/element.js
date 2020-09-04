@@ -7,7 +7,7 @@ Vue.use(ZkTable)
 import { Form, FormItem, Button, Input,Message,Header,Container,Aside,Main,Menu,Submenu,
   MenuItem,MenuItemGroup,Breadcrumb,BreadcrumbItem,Row, Col,Card,Table,
   TableColumn, Switch,Pagination,Dialog,Tag, MessageBox,Tree,Tooltip, Select, Option,
-  Cascader} from 'element-ui';
+  Cascader,Alert} from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(Form)
@@ -38,6 +38,7 @@ Vue.use(Tooltip)
 Vue.use( Select)
 Vue.use(Option)
 Vue.use(Cascader)
+Vue.use(Alert)
 // Vue.use(MessageBox)
 Vue.prototype.$message=Message
 Vue.prototype.$confirm = MessageBox.confirm;
