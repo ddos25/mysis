@@ -114,7 +114,7 @@
 
         <el-dialog title="添加参数" :visible.sync="addParamsVisible" width="30%">
           <el-form :model="addParams" :rules="addParamsRules" ref="addParamsRef" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="活动名称" prop="attr_name">
+            <el-form-item label="参数名称" prop="attr_name">
               <el-input v-model="addParams.attr_name" style="width: 85%"></el-input>
             </el-form-item>
           </el-form>
@@ -126,7 +126,7 @@
 
         <el-dialog title="编辑参数" :visible.sync="editParamsVisible" width="30%">
           <el-form :model="editParams" :rules="addParamsRules" ref="editParamsRef" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="活动名称" prop="attr_name">
+            <el-form-item label="参数名称" prop="attr_name">
               <el-input v-model="editParams.attr_name" style="width: 85%"></el-input>
             </el-form-item>
           </el-form>
@@ -249,7 +249,7 @@
             //  将动态参数的字符串分为数组
           }
 
-          // console.log(this.manyData,this.onlyData);
+          console.log(this.manyData,this.onlyData);
         },
 
 

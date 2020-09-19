@@ -116,7 +116,7 @@
    }
   }
   .el-main{
-    background-color: #ccc;
+    background-color: #eaedf1;
 
   }
 </style>

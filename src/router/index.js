@@ -8,8 +8,31 @@ import Roles from '../components/Roles.vue'
 import Rights from '../components/Rights.vue'
 import Cates from '../components/Cates.vue'
 import Params from '../components/Params.vue'
-
+import Goods from '../components/Goods.vue'
+import newGoods from '../components/newgoods.vue'
 Vue.use(VueRouter)
+
+import VueQuillEditor from 'vue-quill-editor'
+
+import 'quill/dist/quill.core.css' // import styles
+import 'quill/dist/quill.snow.css' // for snow theme
+import 'quill/dist/quill.bubble.css' // for bubble theme
+
+Vue.use(VueQuillEditor)
+
+Vue.filter('createDate',function (date) {
+  var time=new Date(date)
+  var year=time.getFullYear()
+  var mon=time.getMonth() + 1
+  var day=time.getDate()
+  var hour=time.getHours()
+  var min=time.getMinutes()
+  var sec=time.getSeconds()
+
+  return year+'-'+mon+'-'+day +' '+hour+':'+min+':'+sec
+
+})
+
 const router = new VueRouter({
   routes : [
     {
@@ -29,7 +52,8 @@ const router = new VueRouter({
       {path:'/rights',component: Rights},
       {path:'/categories',component: Cates},
       {path:'/params',component: Params},
-
+      {path:'/goods',component: Goods},
+      {path:'/goods/newgoods',component: newGoods},
     ]},
 
   ]
