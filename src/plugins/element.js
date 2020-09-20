@@ -7,7 +7,8 @@ Vue.use(ZkTable)
 import { Form, FormItem, Button, Input,Message,Header,Container,Aside,Main,Menu,Submenu,
   MenuItem,MenuItemGroup,Breadcrumb,BreadcrumbItem,Row, Col,Card,Table,
   TableColumn, Switch,Pagination,Dialog,Tag, MessageBox,Tree,Tooltip, Select, Option,
-  Cascader,Alert,Tabs,TabPane,Steps,Step,Upload,Checkbox,CheckboxGroup,Image} from 'element-ui';
+  Cascader,Alert,Tabs,TabPane,Steps,Step,Upload,Checkbox,CheckboxGroup,Image,
+  Timeline,TimelineItem} from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(Form)
@@ -47,6 +48,8 @@ Vue.use(Upload)
 Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
 Vue.use(Image)
+Vue.use(Timeline)
+Vue.use(TimelineItem)
 // Vue.use(MessageBox)
 Vue.prototype.$message=Message
 Vue.prototype.$confirm = MessageBox.confirm;
