@@ -130,6 +130,7 @@
       created(){
           this.getOrdersList()
       },
+
       methods:{
          //
          async getOrdersList(){

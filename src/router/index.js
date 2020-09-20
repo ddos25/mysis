@@ -11,6 +11,7 @@ import Params from '../components/Params.vue'
 import Goods from '../components/Goods.vue'
 import newGoods from '../components/newgoods.vue'
 import Order from '../components/Order.vue'
+import Reports from '../components/reports.vue'
 Vue.use(VueRouter)
 
 import VueQuillEditor from 'vue-quill-editor'
@@ -56,6 +57,7 @@ const router = new VueRouter({
       {path:'/goods',component: Goods},
       {path:'/goods/newgoods',component: newGoods},
       {path:'/orders',component: Order},
+      {path:'/reports',component: Reports},
     ]},
 
   ]
